@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Promise {
+      constructor(executor) {
+        this.state = 'pending'
+        this.data = null
+        this.fulfilledFns = []
+        this.rejectedFns = []
+        const resolve = (data) => {
+          if (this.state === 'pending') {
+            this.state = 'fulfilled'
+            queueMicrotask(() => {
+              this.data = data
+              this.fulfilledFns.forEach(fn => fn(data))
+            })
+          }
+        }
+        const reject = (reason) => {
+          if (this.state === 'pending') {
+            this.state = 'rejected'
+            this.data = reason
+            queueMicrotask(() => {
+              this.rejectedFns.forEach(fn => fn(reason))
+            })
+          }
+        }
+        try {
+          executor(resolve, reject)
+        } catch (error) {
+          reject(error)
+        }
+      }
+
+      then(onResolve, onReject) {
+        onReject = typeof onReject === 'function' ? onReject : (reason) => reason instanceof Error ? reason : new Error(reason)
+        onResolve = typeof onResolve === 'function' ? onResolve : data => data
+        
+        if (this.state === 'pending') {
+          return new Promise((resolve, reject) => {
+            this.fulfilledFns.push((data) => {
+              try {
+                let x = onResolve(data)
+                x instanceof Promise ? x.then(resolve) : resolve(x)
+              } catch (error) {
+                reject(error)
+              }
+            })
+
+            this.rejectedFns.push((reason) => {
+              try {
+                let x = onReject(reason)
+                x instanceof Promise ? x.then(null, reject) : reject(x)
+              } catch (error) {
+                reject(error)
+              }
+            })
+          })
+        }
+        
+        if (this.state === 'fulfilled') {
+          return new Promise((resolve, reject) => {
+            queueMicrotask(() => {
+              try {
+                let x = onResolve(this.data)
+                x instanceof Promise ? x.then(resolve) : resolve(x)
+              } catch (error) {
+                reject(error)
+              }
+            })
+          })
+        }
+
+        if (this.state === 'rejected') {
+          return new Promise((resolve, reject) => {
+            try {
+              let x = onReject(this.data)
+              x instanceof Promise ? x.then(null, reject) : reject(x)
+            } catch (error) {
+              reject(error)
+            }
+          })
+        }
+      }
+
+      catch(onReject) {
+        return this.then(null, onReject)
+      }
+    }
+    Promise.resolve = (data) =>  {
+      return new Promise((resolve) => {
+        resolve(data)
+      })
+    }
+
+    Promise.reject = (data) => {
+      return new Promise((resolve, reject) => {
+        reject(data)
+      })
+    }
+
+    Promise.all = (promises) => {
+      return new Promise((resolve, reject) => {
+        const len = promises.length,
+              res = [];
+        for (let i = 0; i < len; i++) {
+          promise.then(data => {
+            res[i] = data
+            if (res.filter(() => true).length === len) resolve(res)
+          }, reject)
+        }
+      })
+    }
+
+    Promise.race = (promises) => {
+      return new Promise((resolve, reject) => {
+        for (let p of promises) {
+          p.then(resolve, reject)
+        }
+      })
+    }
+
+
+  </script>
+  <script>
+    new Promise(resolve => {
+      resolve(1);
+      Promise.resolve().then(() => console.log(2))
+      resolve(3);
+
+      console.log(4);
+    }).then(num => {
+      console.log(num)
+    });
+    console.log(5)
+    // // 4 5 2 1 3
+  </script>
+</body>
+
+</html>

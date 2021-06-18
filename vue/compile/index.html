@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../vue.js"></script>
+  <script>
+    compileToFunctions(`
+    <div ref="div" @click.capture.native="clickHandle" :data.sync="data">
+      <a v-if="data===1"></a>
+      <a v-else-if="data===2"></a>
+      <a v-else></a>
+      <p v-for="(item, i) in list" :key="i">
+        <slot name="item" :title="item"></slot>
+      </p>
+      <span :class="['classList', {big: isBig}]">{{data}}</span>
+      <slot>{{data}}</slot>
+      <template slot="aa" slot-scope="{ data }">
+        {{data}}  
+      </template>
+    </div>`)
+  </script>
+</body>
+</html>

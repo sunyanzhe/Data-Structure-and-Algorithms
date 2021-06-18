@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./vue.js"></script>
+  <script>
+    comp = Vue.component('item', {
+      props: ['data'],
+      template: `<button @click="$emit('componentClick', 1)">{{data}}</button>`
+    })
+    aa = new Vue({
+      data() {
+        return {
+          data: 1
+        }
+      },
+      computed: {
+        info() {
+          return this.data
+        }
+      },
+      template: `<div><item :data="data" @componentClick="clickHandle" />{{info}}</div>`,
+      methods: {
+        clickHandle(data) {
+          alert(data)
+        }
+      }
+    }).$mount('#app')
+  </script>
+</body>
+</html>

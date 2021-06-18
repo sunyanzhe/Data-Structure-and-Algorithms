@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="a"></div>
+  <script src="./vue.js"></script>
+  <script>
+    Vue.component('item', {
+      props: {
+        msg: String
+      },
+      data() {
+        return {
+          localMsg: this.msg 
+        }
+      },
+      template: `<div><button @click="clickHandle">click</button>{{localMsg}}</div>`,
+      methods: {
+        clickHandle() {
+          this.$emit("update:msg", this.msg + "1");
+        }
+      }
+    })
+    var aa = new Vue({
+      template: `<div><item :msg.sync="msg" /></div>`,
+      data() {
+        return {
+          msg: 'a'
+        }
+      },
+      beforeUpdate() {
+        console.log('update twice')
+      }
+    }).$mount(document.getElementById('a'))
+  </script>
+</body>
+</html>

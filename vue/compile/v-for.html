@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../vue.js"></script>
+  <script>
+    let fn = compileToFunctions(`<div><p v-for="(item, i) in list" :key="i">{{item}}</p></div>`);
+    function render() {
+      with(this){ 
+        return  _c(
+                  'div', 
+                  _l(
+                      (list),
+                      function(item,i){ return _c('p', {key:i}, [_v(_s(item))]) }
+                    )
+                  )
+      }
+    }
+  </script>
+</body>
+</html>

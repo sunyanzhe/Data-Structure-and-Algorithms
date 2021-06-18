@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input id="app" />
+  <button id="button" type="button">buttonHTML</button>
+  <script>
+    const input = document.querySelector('#app')
+    input.addEventListener('input', (e) => {
+      if (e.target.__composing) return
+      console.log(e.target.value)
+    }, false)
+
+    input.addEventListener('compositionstart', (e) => e.target.__composing = true, false)
+
+    input.addEventListener('compositionend', (e) => {
+      e.target.__composing = false
+      tigger(e.target)
+    }, false)
+
+    function tigger(el) {
+      const event = document.createEvent('HTMLEvents');
+      event.initEvent('input', true, true)
+      el.dispatchEvent(event)
+    }
+  </script>
+</body>
+</html>

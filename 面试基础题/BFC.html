@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .a {
+      width: 100px;
+      height: 100px;
+      border: 1px solid black;
+      float: left;
+    }
+    .b {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // function flat(arr, max = Infinity) {
+    //   let queue = [...arr],
+    //       level = 0,
+    //       hasArr = true
+    //   while (level < max && hasArr) {
+    //       hasArr = false
+    //       let len = queue.length
+    //       for (let i = 0; i < len; i++) {
+    //           let cur = queue.shift()
+    //           if (Array.isArray(cur)) {
+    //               hasArr = true
+    //               queue.push(...cur)
+    //           } else {
+    //               queue.push(cur)
+    //           }
+    //       }
+    //       level++
+    //   }
+    //   return queue
+    // }
+    function flat2(arr, num = Infinity) {
+      let result = []
+      if (num < 0) return [arr]
+      for (let cur of arr) {
+        if (Array.isArray(cur)) {
+          result = [...result, ...flat2(cur, num - 1)]
+        } else {
+          result.push(cur)
+        }
+      }
+      return result
+    }
+    function flat3(arr, num = 1) {
+      return num > 0
+        ? arr.reduce(
+            (pre, cur) =>
+              pre.concat(Array.isArray(cur) ? flat3(cur, num - 1) : cur),
+            []
+          )
+        : arr.slice();
+    }
+
+    let arr = [1, 2, 3, 4, [5, 6, 7, [8]], [9], 10]
+    console.log(flat3(arr))
+
+    function quickSort(arr, left = 0, right = arr.length - 1) {
+      if (arr.length > 1) {
+        let mid = sort(arr, left, right)
+        if (left < mid - 1) {
+          quickSort(arr, left, mid - 1)
+        }
+        if (mid < right) {
+          quickSort(arr, mid, right)
+        }
+      }
+    }
+
+    function sort(arr, left, right) {
+      let mid = (left + right) >> 1
+      let midVal = arr[mid]
+      while (left <= right) {
+        while (arr[left] < midVal) left++
+        while (arr[right] > midVal) right--
+        if (left <= right) {
+          [arr[left], arr[right]] = [arr[right], arr[left]]
+          left++
+          right--
+        }
+      }
+      return left
+    }
+  </script>
+</body>
+</html>

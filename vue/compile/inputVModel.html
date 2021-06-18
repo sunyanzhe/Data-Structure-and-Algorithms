@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../vue.js"></script>
+  <script>
+    let fn = compileToFunctions(`<input v-model="vModelValue" />`)
+    function render() {
+      _c(
+        'input',
+        {
+          directives: [{name:"model",rawName:"v-model",value:(vModelValue),expression:"vModelValue"}],
+          domProps: {"value":(vModelValue)},
+          on:{
+            "input": function($event){ if ($event.target.composing) return; vModelValue=$event.target.value} 
+          }
+        }
+      )
+    }
+  </script>
+</body>
+</html>

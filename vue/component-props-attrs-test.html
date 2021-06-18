@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="./vue.js"></script>
+  <script>
+    const item = Vue.component('item', {
+      template: `<div :custom-attr="data">测试</div>`,
+      props: {
+        data: null
+      },
+      updated() {
+        console.log('updated')
+      }
+    })
+
+
+    var aa = new Vue({
+      data() {
+        return {
+            customAttr: 'customAttr',
+            val: 1
+        }
+      },
+      template: `<item :data="val" :custom-attr="customAttr" />`,
+    }).$mount('#app')
+  </script>
+</body>
+</html>

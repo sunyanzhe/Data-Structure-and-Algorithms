@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let obj = {
+      data: {
+        a: 1
+      }
+    }
+    function defineReactive(obj, key, val) {
+      val = obj[key]
+      Object.defineProperty(obj, key, {
+        configurable: true,
+        enumerable: true,
+        get() {
+          console.log(`${key}`)
+          return val
+        },
+        set(value) {
+          val = value
+        }
+      })
+      if (typeof val == 'object') {
+        for (let k of Object.keys(val)) {
+          defineReactive(val, k)
+        }
+      }
+    }
+    for (let k of Object.keys(obj)) {
+      defineReactive(obj, k)
+    }
+  </script>
+</body>
+</html>

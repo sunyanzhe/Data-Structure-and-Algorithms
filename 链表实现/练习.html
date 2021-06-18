@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>链表练习 第六题</title>
+    <script src="./CLinkedList.js"></script>
+</head>
+<body>
+    <script>
+        let clist = new LinkedList();
+        let people = ['head',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41];
+        for (let i = 1, len = people.length; i < len; i++) {
+            clist.insertAfter(people[i], people[i - 1]);
+        }
+        for (let i = 0; i < 39; i++) {
+            clist.timeRemove(3);
+        }
+        clist.display();
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="open">打开</button>
+    <button id="closed">关闭</button>
+    <script>
+        window.onload = () => {
+            var Modal = (function() {
+            var modal = null
+                return function() {
+                    if (modal) return modal
+                    modal = document.createElement('div')
+                    modal.style.display = 'none'
+                    modal.id = 'modal'
+                    modal.innerHTML = 'Modal'
+                    document.body.appendChild(modal)
+                    return modal
+                }
+            })()
+            var open = document.getElementById('open')
+            var close = document.getElementById('closed')
+            open.onclick = () => {
+                let modal = new Modal()
+                modal.style.display = 'block'
+            }
+            close.onclick = () => {
+                let modal = new Modal()
+                modal.style.display = 'none'
+            }
+        }
+    </script>
+</body>
+</html>

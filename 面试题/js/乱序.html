@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http="hjd.f37y.xyz/2048/read.php?tid-3079707.html" />
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function suffer(arr) {
+      let len = arr.length 
+      for (let i = len; i > 0; i--) {
+        let j = Math.floor(Math.random() * i)
+        [arr[i - 1], arr[j]] = [arr[j], arr[i - 1]]
+      }
+      return arr
+    }
+  </script>
+</body>
+</html>

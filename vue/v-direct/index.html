@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="../vue.js"></script>
+  <script>
+    new Vue({
+      data() {
+        return {
+          lights: [
+            {
+              color: 'red',
+              duration: 5000,
+              twinkleDuration: 1000
+            },
+            {
+              color: 'green',
+              duration: 2000,
+              twinkleDuration: 1000
+            },
+            {
+              color: 'yellow',
+              duration: 1000
+            }
+          ]
+        }
+      },
+      template: `<div ref="div" style="height: 100vh"></div>`,
+      methods: {
+        sleep(duration = 0) {
+          return new Promise((res) => {
+            setTimeout(() => {
+              res()
+            }, duration)
+          })
+        },
+        setColor(color) {
+          this.$refs['div'].style.backgroundColor = color
+        },
+        timeOut(fn, duration) {
+          return new Promise(res => {
+            setTimeout(() => res(fn()), duration)
+          }) 
+        },
+        async twinkleColor(color, twinkleDuration) {
+          let t1 = Date.now()
+          let flag = false
+          while (true) {
+            let t2 = Date.now()
+            if (t2 - t1 > twinkleDuration) break
+            await this.timer(color, flag = !flag)
+          }
+        },
+
+        timer(color, flag) {
+          color = flag  ? 'transparent' : color
+          return this.timeOut(() => this.setColor(color), 200)
+        },
+
+        async lightControl() {
+          let lights = this.lights;
+          while (true) {
+            for (const {color, duration, twinkleDuration} of lights) {
+              this.setColor(color)
+              await this.sleep(duration)
+              if (twinkleDuration) await this.twinkleColor(color, twinkleDuration)
+            }
+          }
+        }
+      },
+      mounted() {
+        this.lightControl()
+      }
+    }).$mount('#app')
+  </script>
+</body>
+</html>

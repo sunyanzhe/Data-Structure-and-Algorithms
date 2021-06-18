@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="a"></div>
+  <script src="./vue.js"></script>
+  <script>
+    var aa = new Vue({
+      template: `<div>{{msg}}<button @click="clickHandle">Click</button></div>`,
+      data() {
+        return {
+          msg: 1
+        }
+      },
+      methods: {
+        clickHandle() {
+          let msg = this.msg
+          this._data = { msg }
+          this.msg++
+        }
+      }
+    }).$mount(document.getElementById('a'))
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+      题目：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？（用 Promse 实现）
+
+      三个亮灯函数已经存在：
+      function red(){
+          console.log('red');
+      }
+      function green(){
+          console.log('green');
+      }
+      function yellow(){
+          console.log('yellow');
+      }
+    **/
+    function red(){
+      console.log('red', new Date().getSeconds());
+    }
+    function green(){
+      console.log('green', new Date().getSeconds());
+    }
+    function yellow(){
+      console.log('yellow', new Date().getSeconds());
+    }
+
+    function timeout(time) {
+      return new Promise((res) => {
+        
+        setTimeout(res, time * 1000)
+      })
+    }
+
+    function asyncRed() {
+      red()
+      return timeout(3)
+    }
+    
+    function asyncGreen() {
+      green()
+      return timeout(1)
+    }
+
+    function asyncYellow() {
+      yellow()
+      return timeout(2)
+    }
+    function generator() {
+      asyncRed()
+      .then(
+        res => asyncGreen()
+      )
+      .then(
+        res => asyncYellow()
+      )
+      .then(
+        res => generator()
+      )
+    }
+    generator()
+  </script>
+</body>
+</html>

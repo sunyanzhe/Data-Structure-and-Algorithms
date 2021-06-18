@@ -1,0 +1,77 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div:nth-child(2) {
+      opacity: .99;
+      display: block;
+      z-index: 9999;
+    }
+
+    .red,
+    .green,
+    .blue {
+      position: absolute;
+      width: 100px;
+      color: white;
+      line-height: 100px;
+      text-align: center;
+    }
+
+    .red {
+      top: 20px;
+      left: 20px;
+      background: red;
+    }
+
+    .green {
+      top: 60px;
+      left: 60px;
+      background: green;
+      display: block;
+      z-index: 9999;
+    }
+
+    .blue {
+      top: 100px;
+      left: 100px;
+      background: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span class="red">Red</span>
+  </div>
+  <div>
+    <span class="green">Green</span>
+  </div>
+  <div>
+    <span class="blue">Blue</span>
+  </div>
+  <script>
+
+    var maxScore = function (cardPoints, k) {
+      let all = cardPoints.reduce((a, b) => a + b),
+        len = cardPoints.length,
+        right = len - k,
+        min = 0,
+        sum = 0;
+      if (k === len) return all
+      for (let i = 0; i < right; i++) sum += cardPoints[i]
+      min = sum
+      while (right < len) {
+        sum = sum + cardPoints[right] - cardPoints[len - right - 1]
+        min = Math.min(min, sum)
+        right++
+      }
+      return all - min
+    };
+    console.log(maxScore([1,1000,1], 1))
+  </script>
+</body>
+
+</html>

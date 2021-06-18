@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Function.prototype.bind = function(context) {
+      let args = Array.prototype.slice.call(arguments, 1)
+      let self = this
+      let fBound =  function() {
+        let bindArgs = Array.prototype.slice.call(arguments)
+        args = args.concat(bindArgs)
+        return self.apply(this instanceof fBound ? this : context, args)
+      }
+      fBound.prototype = Object.create(self)
+      return fBound
+    }
+
+    let context = {
+      a: 1
+    }
+    function log(b, c) {
+      this.a = 1;
+      this.b = b
+      this.c = c
+    }
+    log.bind(context, 1)(2)
+    let fn = log.bind(context, 2)
+    console.log(new fn(3))
+  </script>
+</body>
+</html> 

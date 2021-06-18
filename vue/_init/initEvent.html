@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="../vue.js"></script>
+  <script>
+    let fn = compileToFunctions(`<sunyanzhe v-model="vModelValue" />`)
+    function render() {
+      with(this) {
+        _c(
+          'sunyanzhe',
+          {
+            model:{
+              value:(vModelValue),
+              callback:function ($$v) {vModelValue=$$v},
+              expression:"vModelValue"
+            }
+          }
+        )
+      }
+    }
+  </script>
+</body>
+</html>

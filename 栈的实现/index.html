@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script src="./stack.js"></script> -->
+    <script>
+let node = {
+    val: 4,
+    left: {
+        val: 3,
+        left: {
+            val: 1
+        },
+        right: {
+            val: 2
+        }
+    }
+}
+var reverseVowels = function(s) {
+    const isYuanYin = (str) => 'aoeiuAOEIU'.indexOf(str) !== -1
+    let left = 0, right = s.length - 1
+    while (left < right) {
+        while(left < right && !isYuanYin(s[left])) left++
+        while(left < right && !isYuanYin(s[right])) right--
+        if (left < right) {
+            let swap = s[left]
+            s[left] = s[right]
+            s[right] = swap
+            right--
+            left++
+        }
+    }
+    return s
+};
+console.log(reverseVowels('hello'))
+    </script>
+</body>
+</html>
+1  0  2  0  0  3 
+                

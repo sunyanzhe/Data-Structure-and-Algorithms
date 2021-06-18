@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="a"></div>
+  <script src="./vue.js"></script>
+  <script>
+    // let data = {
+    //   arr: [1, 2, 3],
+    //   obj: {
+    //     name: 'syz',
+    //     age: 11
+    //   },
+    //   text: '1',
+      
+    // }
+    let obj = {a: 1}
+    var bb = Vue.component('sunyanzhe', {
+      props: {
+        obj: Object,
+      },
+      template: `<div>{{obj.a}}{{a}}<button @click="clickHandle">click</button></div>`,
+      computed: {
+        a() {return this.obj.a+1}
+      },
+      methods: {
+        clickHandle() {
+          this.obj.a++
+          this.$emit("update:msg", 10);
+          // this.$nextTick(() => console.log(this.$el.innerHTML))
+          Promise.resolve().then(() => console.log(this.$el.innerHTML))
+          // this.$emit('click')
+        }
+      }
+    })
+    var aa = new Vue({
+      template: `<div>{{date}}<sunyanzhe @click="date = Date.now()" :obj="obj" /></div>`,
+      data() {
+        return {
+          obj: {a: 1},
+          date: Date.now(),
+          msg: 1
+        }
+      },
+    }).$mount(document.getElementById('a'))
+  </script>
+</body>
+</html>

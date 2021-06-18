@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="../vue.js"></script>
+  <script>
+    Vue.component('item', {
+      template: `<button @click="$emit('input', 'changeVal')">{{value}}</button>`,
+      props: ['value'],
+    })
+    new Vue({
+      data() {
+        return {
+          val: 1
+        }
+      },
+      template: `<item v-model="val" />`,
+    }).$mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    input = [['A', 'B']
+]
+
+function decode(message) {
+  // your code here
+  let rows = message.length,
+    cols = message[0] ? message[0].length : undefined,
+    result = [],
+    row = 0;
+  if (!rows || !cols) return ''
+  if (rows === 1) return message.join('')
+  let setp = 0
+  while (setp < cols) {
+    while (row < rows - 1  && setp < cols) {
+      result.push(message[row][setp])
+      row++
+      setp++
+    }
+    while(row > 0 && setp < cols) {
+      result.push(message[row][setp])
+      row--
+      setp++
+    }
+  }
+  return result.join('')
+}
+
+console.log(decode(input))
+  </script>
+</body>
+</html>

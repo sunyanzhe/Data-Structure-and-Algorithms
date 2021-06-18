@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    
+    class Scheduler {
+      constructor() {
+        this.temp = 0
+        this.max = 2
+        this.queue = []
+      }
+      add(promiseCreator) {
+        this.temp++
+        
+      }
+    }
+    const timeout = (time) => new Promise(resolve => { setTimeout(resolve, time) })
+    const scheduler = new Scheduler()
+
+    const addTask = (time, order) => {
+      scheduler.add(() => timeout(time))
+        .then(() => console.log(order))
+    }
+
+    addTask(2000, '1')
+    addTask(1000, '2')
+    addTask(1000, '3')
+    addTask(500, '4')
+
+  </script>
+</body>
+
+</html>

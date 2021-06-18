@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="father">
+    <a href="#">链接1号</a>
+    <a href="#">链接2号</a>
+    <a href="#">链接3号</a>
+    <a href="#">链接4号</a>
+    <a href="#">链接5号</a>
+    <a href="#">链接6号</a>
+  </div>
+</body>
+<script>
+  const father = document.querySelector('#father')
+  father.addEventListener('click', (e) => {
+    if (e.target.nodeName === 'A') {
+      e.preventDefault()
+      alert(`我是${e.target.innerText}`)
+    }
+  }, false)
+</script>
+</html>

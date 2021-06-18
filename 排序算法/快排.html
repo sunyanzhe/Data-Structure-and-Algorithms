@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function quickSort(arr, left = 0, right = arr.length - 1) {
+      if (arr.length) {
+        let povit = sort(arr, left, right)
+        if (left < povit - 1) {
+          quickSort(arr, left, povit - 1)
+        }
+        if (right > povit) {
+          quickSort(arr, povit, right)
+        }
+      }
+    }
+    function sort(arr, left, right) {
+      let mid = (left + right) >> 1,
+        val = arr[mid],
+        i = left,
+        j = right;
+      while (i <= j) {
+        while (arr[i] < mid) {
+          i++
+        }
+        while(arr[j] > mid) {
+          j++
+        }
+        if (i <= j) {
+          [arr[i], arr[j]] = [arr[j], arr[i]]
+          i++
+          j--
+        }
+      }
+      return i
+    }
+
+
+
+
+
+
+
+
+
+    function quickSort(arr, left = 0, right = arr.length - 1) {
+      if (arr.length > 1) {
+        let index = sort(arr, left, right)
+        if (left < index - 1) {
+          quickSort(arr, left, index - 1)
+        }
+        if (right > index) {
+          quickSort(arr, index, right)
+        }
+      }
+      return arr
+    }
+
+    function sort(arr, left, right) {
+      let mid = (left + right) >> 1,
+        povit = arr[mid];
+      while (left <= right) {
+        while (arr[left] < povit) left++
+        while (arr[right] > povit) right--
+        if (left <= right) {
+          [arr[left], arr[right]] = [arr[right], arr[left]]
+          left++
+          right--
+        }
+      }
+      return left
+    }
+  </script>
+</body>
+</html>
