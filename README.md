@@ -158,6 +158,7 @@
 
 ### EsLint 
 1. 一文读懂Eslint：https://xieyufei.com/2021/04/25/Front-Eslint.html
+2. Eslint——extend和plugin：https://blog.csdn.net/letterTiger/article/details/113748741
 
 ## 其他资料
 
