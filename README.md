@@ -159,6 +159,7 @@
 ### EsLint 
 1. 一文读懂Eslint：https://xieyufei.com/2021/04/25/Front-Eslint.html
 2. Eslint——extend和plugin：https://blog.csdn.net/letterTiger/article/details/113748741
+3. 自定义Eslint：https://developer.aliyun.com/article/824999
 
 ### jamstack
 1. web建站技术栈：https://zhuanlan.zhihu.com/p/281085404
