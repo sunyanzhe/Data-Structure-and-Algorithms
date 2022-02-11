@@ -109,6 +109,10 @@
     
     * 其他版本： https://github.com/xieranmaya/blog/issues/3
 
+## TypeScript
+学废TypeScript： https://zhuanlan.zhihu.com/p/456180727
+
+
 ## 算法
 
 **先看小册，把小册的题都看明白。然后去leetcode刷题，按类型刷题，类型的顺序可以是小册的学习顺序，面试题一般都是简单中等难度**
