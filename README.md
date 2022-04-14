@@ -174,5 +174,6 @@
 1. ssh大佬总结的进阶文章：https://github.com/sl1673495/frontend-roadmap
 2. 神三元的各种灵魂拷问：https://juejin.cn/user/430664257382462/posts
 
-## 大佬博客
-https://mariusschulz.com/
+## 博客
+TS：https://mariusschulz.com/
+Dan Abramov：https://overreacted.io/
