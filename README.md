@@ -169,12 +169,19 @@
 
 ### jamstack
 1. web建站技术栈：https://zhuanlan.zhihu.com/p/281085404
-## 其他资料
+
 
 ### monorepo
 1. 基于lerna和yarn workspace的monorepo工作流： https://zhuanlan.zhihu.com/p/71385053
 2. 精读monorepo优势：https://zhuanlan.zhihu.com/p/65533186
+3. monorepo的一些常识：https://zhuanlan.zhihu.com/p/70782864
+4. lerna与yarn workspace的hoisting对比：https://yrq110.me/post/tool/how-lerna-manage-package-dependencies/
+5. 深入理解 yarn 中的 nohoist 机制：https://github.com/chenxiaochun/blog/issues/72
+6. nohoist in workspaces：https://classic.yarnpkg.com/blog/2018/02/15/nohoist/
+7. 现代前端工程化-基于 Monorepo 的 lerna 模块(从原理到实战)：https://jishuin.proginn.com/p/763bfbd5505d
+8. 
 
+## 其他资料
 1. ssh大佬总结的进阶文章：https://github.com/sl1673495/frontend-roadmap
 2. 神三元的各种灵魂拷问：https://juejin.cn/user/430664257382462/posts
 
