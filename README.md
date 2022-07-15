@@ -171,6 +171,10 @@
 1. web建站技术栈：https://zhuanlan.zhihu.com/p/281085404
 ## 其他资料
 
+### monorepo
+1. 基于lerna和yarn workspace的monorepo工作流： https://zhuanlan.zhihu.com/p/71385053
+2. 精读monorepo优势：https://zhuanlan.zhihu.com/p/65533186
+
 1. ssh大佬总结的进阶文章：https://github.com/sl1673495/frontend-roadmap
 2. 神三元的各种灵魂拷问：https://juejin.cn/user/430664257382462/posts
 
